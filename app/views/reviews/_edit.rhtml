@@ -1,0 +1,24 @@
+<%= error_messages_for 'review' %>
+
+<!--[form:review]-->
+<div>
+  <h1>수강소감 수정</h1>
+  <% form_for :review, :url => {:action => 'update', :id => @review} do |form| %>
+    <p>
+      <label for="review_comment">수강소감</label><br />
+      <%= form.text_area 'comment', "cols" => 50, "rows" => 10 %>
+    </p>
+
+    <p>
+      <label for="review_password">비밀번호</label>
+      <%= form.password_field 'password', "size" => 15 %>
+    </p>
+    <%= hidden_field_tag "review[course_id]", @review.course_id %> <!-- model에 자동으로 들어감 -->
+    <%= hidden_field_tag "course_id", @review.course_id %> <!-- before_filter에서 course_id 가져오는 부분 때문에 중복으로 넣음 -->
+    <%= hidden_field_tag "course_id", @review.course_id %>
+    </p>
+    <%= submit_tag '수정' %>
+  <% end %>
+
+</div>
+<!--[eoform:review]-->

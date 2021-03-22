@@ -1,0 +1,9 @@
+<ol>
+  <% @surveys.each do |q| %>
+    <% c = q.course %>
+    <% t = "#{c.year_semester} '#{c.title}' at " + "<time class=\"timeago\" datetime=\"#{q.created_at.getutc.iso8601}\">#{q.created_at.to_s(:db)}</time>" %>
+    <li><%= link_to t, :controller => "survey", :action => 'show', :course_id => c.id %></li>
+  <% end %>
+</ol>
+
+<%= link_to '<i class="icon-info-sign icon-white"></i> 더 보기', {:controller => "survey", :action => 'index'}, {:class => "btn btn-small btn-info"} %>

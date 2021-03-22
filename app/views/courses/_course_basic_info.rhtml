@@ -1,0 +1,40 @@
+<h1>과목 기본 정보</h1>
+
+<section class="social-share">
+  <span style="display:inline-block; position: relative; top: 3px;">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+  </span>
+
+  <div class="fb-like" data-send="true" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+</section>
+<script src="/javascripts/social-share.js"></script>
+
+<dl class="dl-horizontal">
+  <dt class="data-key">과목명</dt><dd class="data-value"><%= @course.title %></dd>
+  <dt class="data-key">과목코드</dt><dd class="data-value"><%= @course.code %>-<%= @course.bunban %></dd>
+  <dt class="data-key">개설시기</dt><dd class="data-value"><%= @course.year_semester %></dd>
+  <dt class="data-key">강의실</dt><dd class="data-value"><%= @course.day_time %></dd>
+  <dt class="data-key">담당교수</dt><dd class="data-value"><%= link_to_prof @course.prof %></dd>
+  <dt class="data-key">수강생수</dt><dd class="data-value"><%= @course.num_of_std %></dd>
+  <dt class="data-key">영어강의</dt><dd class="data-value"><%= @course.english? %></dd>
+  <dt class="data-key">공학인증</dt><dd class="data-value"><%= @course.abeek? %></dd>
+</dl>
+
+<section>
+  <h2>다른 학기에 열린 같은 교수의 같은 과목</h2>
+  <div class="well">
+    <% @related_course.each do |r_course| %>
+      <% if r_course.id != @course.id %>
+        <%= link_to_course '<span class="badge badge-info">' + r_course.year_semester + '</span>', r_course.id %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<section>
+  <h2>강의평가 및 수강소감</h2>
+  <ul>
+    <li><%= link_to "주관식 강의평가 등록", :controller => 'survey', :action => 'add', :course_id => @course.id %> / <%= link_to_survey_result @course %></li>
+    <li><%= link_to "수강소감 등록 및 보기", :controller => 'reviews', :action => 'show', :course_id => @course.id %> / <%= link_to_review_result @course %> </li>
+  </ul>
+</section>

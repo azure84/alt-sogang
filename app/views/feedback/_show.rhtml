@@ -1,0 +1,13 @@
+<% unless show.nil? %>
+  <article class="span5">
+    <div class="well">
+      <div>
+        <%= new_line_to_br h(show.comment) %>
+      </div>
+      <div class="reviews-credit">
+        <time class="timeago" datetime="<%= show.created_at.getutc.iso8601 %>"><%= show.created_at.to_s(:db) %></time>
+      </div>
+    </div>
+  </article>
+<% end %>
+

@@ -1,0 +1,130 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"  manifest="404.manifest.appcache"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <title><%= @title + " - " unless @title.blank? %>얼트서강</title>
+  <meta name="description" content="alt-sogang은 alternative sogang을 뜻하며, 매학기 반복되는 문제--수강신청 정보 부족, 강의평가 결과의 비공개--를 해결하기 위한 대안적인 공개강의평가 및 수업정보 공유 서비스를 만들고자 하는 프로젝트입니다." />
+  <meta name="keywords" content="서강대 , Sogang University , 얼트서강 , 알트서강 , alt-sogang , 강의평가 , 수강신청 , 서강대학교 , 수업정보" />
+  <meta name="google-site-verification" content="ccYQr1RTVxggW9foZnATVtBZNEjRLbpj3dQJRhye4Lk" />
+
+
+  <link rel="icon" href="/favicon.ico">
+  <!-- For iPhone with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+  <!-- For first- and second-generation iPad: -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+
+
+  <%= auto_discovery_link_tag :rss, {:controller => 'feed', :action => 'feedback'}, :title => "Feedback" %>
+  <%= auto_discovery_link_tag :rss, {:controller => 'feed', :action => 'review'}, :title => "Review" %>
+
+  <link type="text/css" rel="stylesheet" href="/stylesheets/united-bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-responsive.min.css" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/module.css" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/rails_default.css" />
+
+  <!-- Bootstrap CSS fixes for IE6 -->
+  <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
+
+
+
+  <script src="/javascripts/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+</head>
+<body>
+<div id="fb-root"></div>
+
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em>
+  <a href="http://browsehappy.com/">Upgrade to a different browser</a> or
+  <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+</p><![endif]-->
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">얼트서강</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+          <li><%= link_to "과목검색", :controller => "courses", :action => "index" %></li>
+          <li><%= link_to "피드백", :controller => "feedback", :action => "index" %></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container content">
+  <% if flash[:notice] %>
+    <div class="alert alert-info flash-notification">
+      <%= flash[:notice] %>
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+    </div>
+  <% end %>
+
+
+
+  <div class="row">
+    <div class="span10">
+      <%= yield %>
+    </div>
+
+    <div class="span2 visible-desktop">
+      <%= render :partial => "layouts_common/ad_long" %>
+    </div>
+
+  </div>
+
+  <footer>
+    <%= link_to "얼트서강(Alt-Sogang)에 대하여", :controller => "site", :action => "about" %>
+    | <%= link_to "의견 보내기", :controller => "feedback", :action => "index" %>
+  </footer>
+
+
+
+  <% if ENV["RAILS_ENV"] == "development" %>
+    <%= render :partial => "layouts_common/debug" %>
+  <% end %>
+
+
+  <div class="row">
+    <div class="span4">
+      <%= render :partial => "layouts_common/ad_short_first" %>
+    </div>
+
+    <div class="span4">
+      <%= render :partial => "layouts_common/ad_short_second" %>
+    </div>
+
+  </div>
+
+
+</div>
+<!-- /container -->
+
+
+<%= render :partial => "layouts_common/js_for_layout" %>
+
+
+</body>
+</html>

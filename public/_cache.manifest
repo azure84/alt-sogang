@@ -1,0 +1,21 @@
+CACHE MANIFEST
+
+
+NETWORK:
+*
+
+CACHE:
+# style
+/stylesheets/module.css
+/stylesheets/rails_default.css
+
+# scripts
+/javascripts/libs/jquery.timeago.js
+/javascripts/libs/jquery.timeago.ko.js
+/javascripts/libs/jquery-1.7.2.min.js
+/javascripts/libs/modernizr-2.5.3-respond-1.1.0.min.js
+/javascripts/plugins.js
+/javascripts/script.js
+
+
+# images

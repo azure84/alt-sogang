@@ -1,0 +1,26 @@
+<%= flash[:notice] %>
+<%= error_messages_for 'review' %>
+<% form_for :review, :url => {:action => :authen, :id => params[:id]}, :html => {:name => "deledit"} do |form| %>
+  <div>
+
+    <div>
+      <h2>댓글 수정/삭제</h2>
+    </div>
+
+    <div id=editdel>
+      <%= form.radio_button 'edit_del_review', '1' %>
+      <label for="edit_button">수강소감 수정</label>
+    </div>
+    <div id=editdel>
+      <%= form.radio_button 'edit_del_review', '2' %>
+      <label for="delete_button">수강소감 삭제</label>
+    </div>
+    <br>
+
+    <div>
+      <label for="password">비밀번호:</label>
+      <%= form.password_field 'password', "size" => 15 %>
+      <%= submit_tag "확인", :onclick => "document.deledit.submit();" %>
+    </div>
+  </div>
+<% end %>

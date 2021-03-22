@@ -1,0 +1,6 @@
+<%= @catch.size unless @catch.blank? %>
+<% # 왜 결과가 4배로 나오지?  %>
+<br />
+<% for c in @catch %>
+  <%= c.title %> : <%= c.code %>-<%= c.bunban %> on <%= c.year %>-<%= c.semester %> at <%= c.dept %><br />
+<% end %>

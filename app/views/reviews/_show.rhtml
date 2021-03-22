@@ -1,0 +1,23 @@
+<article class="span5">
+  <div class="well">
+    <% unless show.nil? %>
+      <div>
+        <%= new_line_to_br h(show.comment) %>
+      </div>
+
+      <div class="reviews-credit">
+        <div>
+          <i class="icon-user"></i> <%= show.user %>님이 <i class="icon-time"></i>
+          <time class="timeago" datetime="<%= show.created_at.getutc.iso8601 %>"><%= show.created_at.to_s(:db) %></time>
+        </div>
+        <div class="pull-right">
+          <a href="#" onclick="deleteComment(<%=show.id -%>);return false" class="modify" title="수정/삭제">&nbsp;수정/삭제</a>
+        </div>
+      </div>
+      <% link_to '수정', :controller => "reviews", :action => 'edit', :id => show.id, :course_id => show.course_id %>
+      <% link_to '삭제', :controller => "reviews", :action => 'destroy', :id => show.id, :course_id => show.course_id %>
+    <% else %>
+      등록된 수강소감이 없습니다.
+    <% end %>
+  </div>
+</article>

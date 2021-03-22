@@ -1,0 +1,19 @@
+<% unless @course_id.nil? %>
+  <%= render :partial => "courses/course_basic_info" %>
+
+  <div>
+    <h3>주관식 강의평가 결과</h3>
+    <% for i in 1..8 %>
+      <section>
+        <h4 class="survey-question"><%= i %>. <%= Questionaire::Question[i] %></h4>
+        <section class="row">
+          <% unless @q[i].empty? %>
+            <%= render :partial => 'show', :collection => @q[i] %>
+          <% end %>
+        </section>
+      </section>
+    <% end %>
+  </div>
+
+  <%= render :partial => 'courses/back_to_course' %>
+<% end %>

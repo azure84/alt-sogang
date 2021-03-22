@@ -1,0 +1,26 @@
+<section>
+  <h1>주관식 강의평가 등록</h1>
+
+  <span class="help-block">강의명:<%= @course.title %>, 담당교수: <%= @course.prof %></span>
+
+  <span class="help-inline">주관식은 모든 문항에 응답하지 않으셔도 됩니다.</span>
+
+  <%= error_messages_for 'survey' %>
+
+  <% form_for :qualitative_survey, :url => {:action => :create}, :html => {:class => 'well'} do |form| %>
+    <% for i in 1..8 %>
+      <h2 class="survey-question"><%= i %>.<%= Questionaire::Question[i] %></h2>
+      <%= form.text_area 'qualitative'+i.to_s, :class => 'span5' %>
+    <% end %>
+
+    <%= hidden_field_tag "qualitative_survey[course_id]", @course_id %> <!-- model에 자동으로 들어감 -->
+    <%= hidden_field_tag "course_id", @course_id %> <!-- before_filter에서 course_id 가져오는 부분 때문에 중복으로 넣음 -->
+
+    <div>
+      <%= submit_tag "등록", :class => "btn" %>
+    </div>
+  <% end %>
+
+</section>
+
+<%= render :partial => 'courses/back_to_course' %>

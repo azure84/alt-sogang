@@ -1,0 +1,4 @@
+<% if @edit=='1' %>
+  <%= render :partial => 'edit' %>
+<% end %>
+<%= hidden_field_tag "course_id", @course_id %>

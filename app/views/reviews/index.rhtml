@@ -1,0 +1,6 @@
+<% unless @reviews.nil? %>
+  <h2>그동안 등록된 수강소감 목록</h2>
+  <%= render :partial => "main/latest_review" %>
+<% end %>
+
+<%= render :partial => "layouts_common/paging" %>

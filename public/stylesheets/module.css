@@ -1,0 +1,53 @@
+
+@media (min-width: 768px) {
+    /* 데스크탑일때 화면 상단이 메뉴와 겹치는 현상 픽스 */
+    .content{
+        padding-top: 60px;
+    }
+}
+
+@media (max-width: 767px){
+    /* 과목목록 검색시 반응형 테이블 깨지는 경우 픽스 */
+    th[class*="span"]{
+        display: table-cell;
+    }
+}
+
+.reviews-credit, .survey-credit{
+    border-top: 0.1em dashed  #ddd;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    text-align: right;
+}
+
+.survey-question{
+    border-bottom: 1px solid  #ddd;
+    margin: 0.5em 0;
+}
+
+.data-key{
+    background-color:#e0e0e0;
+    font-weight:bold;
+    padding: 0.5em;
+}
+.data-value{
+    padding: 0.5em;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .twitter-share-button {
+        /*display: block;*/
+        /*background-color: #d5e6ef;*/
+        /*border: 1px solid #a4cce5;*/
+        display: none;
+    }
+
+}
+
+footer{
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    margin: 0.5em 0;
+    padding: 0.5em 0;
+}

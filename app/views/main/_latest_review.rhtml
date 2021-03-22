@@ -1,0 +1,9 @@
+<ol>
+  <% @reviews.each do |review| %>
+    <% c = review.course %>
+    <% t = "#{c.year_semester} '#{c.title}' by #{review.user} at " + "<time class=\"timeago\" datetime=\"#{review.created_at.getutc.iso8601}\">#{review.created_at.to_s(:db)}</time>" %>
+    <li><%= link_to t, :controller => "reviews", :action => 'show', :course_id => c.id %></li>
+  <% end %>
+</ol>
+
+<%= link_to '<i class="icon-info-sign icon-white"></i> 더 보기', {:controller => "reviews", :action => 'index'}, {:class => "btn btn-small btn-info"} %>

@@ -1,0 +1,28 @@
+xml.instruct!
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title '얼트서강 - 피드백'
+    xml.link url_for(:only_path => false,
+                     :controller => 'feedback',
+                     :action => 'index')
+    xml.pubDate CGI.rfc1123_date(@feedbacks.first.created_at) unless @feedbacks.nil? or @feedbacks.empty?
+    xml.description h("얼트서강 사이트에 대한 피드백들")
+    @feedbacks.each do |feedback|
+      xml.item do
+        xml.title feedback.comment.chars.to(40)
+        xml.link url_for(:only_path => false,
+                         :controller => 'feedback',
+                         :action => 'index',
+                         :id => feedback)
+
+        xml.description new_line_to_br(h(feedback.comment))
+        xml.pubDate CGI.rfc1123_date(feedback.created_at)
+        xml.guid url_for(:only_path => false,
+                         :controller => 'feedback',
+                         :action => 'index',
+                         :id => feedback)
+        xml.author h("사용자")
+      end
+    end
+  end
+end

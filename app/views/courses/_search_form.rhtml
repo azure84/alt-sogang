@@ -1,0 +1,7 @@
+<div>
+  <% form_for :course, :url => {:controller => "courses", :action => :index}, :html => {:method => :get, :class => 'well form-search'} do |form| %>
+    <label for="keyword"><i class="icon-search"></i> 검색 키워드</label>
+    <input type="text" class="search-query span5" name="keyword" value="<%= @keyword %>" placeholder="과목 이름, 과목코드(분반 숫자 제외), 교수 이름" />
+    <%= submit_tag "과목 검색", :id => "search_submit", :class => "btn span2" %>
+  <% end %>
+</div>

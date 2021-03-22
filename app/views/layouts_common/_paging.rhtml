@@ -1,0 +1,7 @@
+<% if paginated? %>
+  <div class="pagination pagination-centered">
+    <ul>
+    <%= pagination_links @pages, {:link_to_current_page=>false, :params => params}, { :class=>"xxx"} %>
+    </ul>
+  </div>
+<% end %>

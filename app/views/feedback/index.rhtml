@@ -1,0 +1,22 @@
+<section>
+  <h2>피드백 남기기</h2>
+  <%= error_messages_for :feedback %>
+  <% form_for :feedback, :url => {:action => :create}, :html => {:class => 'well'} do |form| %>
+    <label for="feedbacks_comment">서비스에 대한 소감, 버그 발견, 불편사항 지적, 응원의 글 및 기타 문의사항을 남겨주세요.</label><br />
+    <%= form.text_area 'comment', :class => "span5" %>
+    <div>
+      <%= submit_tag "등록", :class => "btn" %>
+    </div>
+  <% end %>
+</section>
+
+<div>
+  <h2>그동안 등록된 의견</h2>
+
+  <section class="row">
+    <%= render :partial => 'show', :collection => @feedbacks %>
+  </section>
+</div>
+
+
+<%= render :partial => "layouts_common/paging" %>

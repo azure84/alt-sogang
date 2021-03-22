@@ -1,0 +1,32 @@
+xml.instruct!
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title '얼트서강 - 서강대 공개 수강소감'
+    xml.link url_for(:only_path => false,
+                     :controller => 'courses',
+                     :action => 'index'
+             )
+    xml.pubDate CGI.rfc1123_date(@reviews.first.created_at) unless @reviews.nil? or @reviews.empty?
+    xml.description h("얼트서강 - 수강소감")
+    @reviews.each do |review|
+      xml.item do
+        # TODO review.course.title + "에 대한 수강 소감"
+        # 여기서 belongs_to 라서 자동으로 못 가져온다. find할때 :scope로 가져와야하나?
+        c = review.course
+        xml.title "#{c.year_semester} #{c.code}-#{c.bunban} '#{c.title}' 과목에 대한 수강소감"
+        xml.link url_for(:only_path => false,
+                         :controller => 'reviews',
+                         :action => 'list',
+                         :course_id => review.course_id)
+
+        xml.description new_line_to_br(h(review.comment))
+        xml.pubDate CGI.rfc1123_date(review.created_at)
+        xml.guid url_for(:only_path => false,
+                         :controller => 'reviews',
+                         :action => 'list',
+                         :course_id => review.course_id)
+        xml.author h(review.user)
+      end
+    end
+  end
+end

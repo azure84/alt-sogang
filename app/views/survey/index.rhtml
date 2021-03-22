@@ -1,0 +1,6 @@
+<% unless @surveys.nil? %>
+  <h2>그동안 등록된 주관식 강의평가 목록</h2>
+  <%= render :partial => "main/latest_survey" %>
+<% end %>
+
+<%= render :partial => "layouts_common/paging" %>
